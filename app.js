@@ -1,6 +1,6 @@
 //Query Selectors
 const recipeForm = document.querySelector('#recipe-form');
-const recipeContainer = document.querySelector('#recipe-container');
+const recipeContainer = document.getElementById('#recipe-container');
 let listItems = [];
 
 //FUNCTIONS
@@ -44,7 +44,7 @@ function displayRecipes() {
             </div>
         </div>
         `).join('');
-    recipeContainer.innerHTML = tempString;
+    document.getElementById(') = tempString;
 }
 
 function mirrorStateToLocalStorage() {
@@ -64,14 +64,39 @@ function deleteRecipeFromList(id) {
     recipeContainer.dispatchEvent(new CustomEvent('refreshRecipes'));
     }
 
+
+function setupTabs () {
+    document.querySelectorAll(".tabs__button").forEach(button => {
+        button.addEventListener("click", () => {
+            const sideBar = button.parentElement;
+            const tabsContainer = sideBar.parentElement;
+            const tabNumber = button.dataset.forTab;
+            const tabToActivate = tabsContainer.querySelector(`.tabs__content[data-tab="${tabNumber}"]`);
+        
+            sideBar.querySelectorAll(".tabs__button").forEach(button => {
+                button.classList.remove("tabs__button--active");
+            });
+
+            tabsContainer.querySelectorAll(".tabs__content").forEach(tab => {
+                tab.classList.remove("tabs__content--active");
+            });
+
+            button.classList.add("tabs__button--active");
+            tabToActivate.classList.add("tabs__content--active");
+
+        });
+    });
+}
+
 //EVENT LISTENERS
+document.addEventListener('DOMContentLoaded', setupTabs);
 recipeForm.addEventListener('submit', handleFormSubmit);
 recipeContainer.addEventListener('refreshRecipes', displayRecipes);
 recipeContainer.addEventListener('refreshRecipes', mirrorStateToLocalStorage);
+recipeContainer.addEventListener('click', loadInitialUI);
 window.addEventListener('DOMContentLoaded', loadInitialUI);
 recipeContainer.addEventListener('click', (e) => {
     if(e.target.matches('.btn-outline-danger')){
         deleteRecipeFromList(Number(e.target.value));
     };
 })
-

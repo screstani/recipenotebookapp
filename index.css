@@ -1,0 +1,58 @@
+body {
+  font-family: 'Roboto Mono', monospace;
+  background-image: url(fundoopaco.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.tabs {
+  border: 1px solid #cccccc;
+  width: 600px;
+  margin: 0 auto;
+  display: inline;    
+}
+
+.tabs__sidebar {
+  width: 600px;
+  margin: 0 auto;
+  background: #cccccc;
+}
+
+.tabs__button {
+  display: inline-block;
+  margin-right: 20px;
+  padding: 10px;
+  background: #eeeeee;
+  border: none;
+  width: calc(100% - 4px);
+  outline: none;
+  cursor: pointer;
+}
+
+.tabs__button:not(:last-of-type) {
+  border-bottom: 0.5px solid #cccccc;
+}
+
+.tabs__button--active {
+  font-weight: bold;
+  border-bottom: 3px solid #cccccc;
+  background: #dddddd;
+}
+
+.tabs__content {
+  padding: 15px;
+  font-size: 0.8rem;
+  display: none;
+}
+
+.tabs__content--active {
+  display: block;
+}
+
+.tabs__content > :first-child {
+  margin-top: 0;
+}
+
+#recipe-container {
+  display: block;
+}
