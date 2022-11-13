@@ -44,7 +44,7 @@ function displayRecipes() {
             </div>
         </div>
         `).join('');
-    document.getElementById(') = tempString;
+    recipeContainer = tempString;
 }
 
 function mirrorStateToLocalStorage() {
